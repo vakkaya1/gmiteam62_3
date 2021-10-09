@@ -19,7 +19,8 @@ public class ConfigReader {
     //static block kullaniyoruz. Herseyden once calisir. Mainden bile once calisir
     static {
         //dosya yolunu tanitiyoruz.
-        String path = "configuration.properties";
+        String path = "configuration" +
+                ".properties";
 
 
         //dosyayi bulamazsa diye try-catch yapiyoruz.
