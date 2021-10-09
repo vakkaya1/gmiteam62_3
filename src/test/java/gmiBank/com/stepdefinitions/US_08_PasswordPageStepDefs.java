@@ -1,14 +1,29 @@
 package gmiBank.com.stepdefinitions;
 
+
+
 import gmiBank.com.pages.US_08PasswordPage;
 import gmiBank.com.utilities.ConfigReader;
+import gmiBank.com.utilities.Driver;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
 
 public class US_08_PasswordPageStepDefs {
 
     US_08PasswordPage passpage=new US_08PasswordPage();
+
+    @Given("Given User navigates go to {string}")
+    public void givenUserNavigatesGoTo(String string) {
+
+        Driver.getDriver().get(ConfigReader.getProperty(string));
+
+    }
+    @Then("click menu icon1")
+    public void click_menu_icon() {
+        passpage.menuIcon.click();
+    }
 
     @Then("user logged in with a valid username and password")
     public void userLoggedInWithAValidUsernameAndPassword() {
@@ -39,14 +54,14 @@ public class US_08_PasswordPageStepDefs {
     public void checkTheFailBoxMessage() {
         passpage.confirmPasswordInput.click();
         Assert.assertEquals(passpage.failMessageBox.getText(),"New password should be different from the current one.","BAGGGG");
-
+        System.out.println(passpage.failMessageBox.getText());
     }
 
     @Then("User enters {string} to use at least  {string} char for stronger password and see the level chart change accordingly")
     public void userEntersToUseAtLeastCharForStrongerPasswordAndSeeTheLevelChartChangeAccordingly(String pass, String exp) {
         passpage.newPasswordInput.sendKeys(pass);
         String colour=passpage.strengthBar.getCssValue("background-color");
-
+        System.out.println(colour);
         Assert.assertTrue(colour.contains(ConfigReader.getProperty("orange")));
         System.out.println("User enters "+pass+" to use at least "+ exp+ " char for stronger password and see the level chart colour changed "+ConfigReader.getProperty(colour));
 
@@ -62,6 +77,7 @@ public class US_08_PasswordPageStepDefs {
     public void userEntersToUseAtLeastCharForStrongerPasswordAndSeeTheLevelChartColourChangeAccordingly(String pass, String exp, String renk) {
         passpage.newPasswordInput.sendKeys(pass);
         String colour=passpage.strengthBar.getCssValue("background-color");
+        System.out.println(colour);
         Assert.assertTrue(colour.contains(ConfigReader.getProperty(renk)),"User enters "+pass+" to use at least "+ exp+ " char for stronger password and can not see the level chart colour changed "+ConfigReader.getProperty(colour));
         System.out.println("User enters "+pass+" to use at least "+ exp+ " char for stronger password and see the level chart colour changed "+renk);
 
@@ -79,8 +95,8 @@ public class US_08_PasswordPageStepDefs {
 
     @Then("User should not see fail message under the new password box.")
     public void userShouldNotSeeFailMessageUnderTheNewPasswordBox() {
-        System.out.println(passpage.failMessageBox.getText());
-        Assert.assertTrue(passpage.failMessageBox.getText().isEmpty(),"BAGGGG");
 
+        Assert.assertTrue(passpage.failMessageBox.getText().isEmpty(),"BAGGGG-Fail message has seen-"+passpage.failMessageBox.getText());
+        System.out.println("Fail message not detected");
     }
 }
