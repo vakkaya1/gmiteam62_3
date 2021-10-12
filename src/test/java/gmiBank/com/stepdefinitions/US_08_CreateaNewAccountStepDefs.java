@@ -114,6 +114,7 @@ public class US_08_CreateaNewAccountStepDefs {
     @Then("User clicks search button")
     public void userClicksSearchButton() {
         createaccount.searchCustomerButton.click();
+        Driver.wait(3);
     }
 
     @And("Check it is not blank")
@@ -162,7 +163,7 @@ public class US_08_CreateaNewAccountStepDefs {
         accountList=createaccount.accountIds;
         System.out.println(createaccount.accountIds.size());
         Random rand=new Random();
-        randaccountID=rand.nextInt(createaccount.accountIds.size());
+        randaccountID=rand.nextInt(createaccount.accountIds.size()-1);
         System.out.println(randaccountID);
         System.out.println(createaccount.accountIds.get(randaccountID).getText());
         customerId=createaccount.accountIds.get(randaccountID).getText();
@@ -171,6 +172,9 @@ public class US_08_CreateaNewAccountStepDefs {
 
     @Then("User checks Zelle Enrolled box and clicks Edit buttonbuttons should be clickable")
     public void userChecksZelleEnrolledBoxAndClicksEditButtonbuttonsShouldBeClickable() {
+        Driver.wait(2);
+        JSUtils.scrollIntoVIewJS(createaccount.zelleEnrolledInfo);
+        Driver.wait(3);
         System.out.println( createaccount.zelleEnrolledInfo.getText());
         zelleEnrolled=createaccount.zelleEnrolledInfo.getText();
         createaccount.editButton.click();
@@ -179,6 +183,8 @@ public class US_08_CreateaNewAccountStepDefs {
 
     @Then("User clicks Zelle Enrolled button and save button")
     public void userClicksZelleEnrolledButtonAndSaveButton() {
+        Driver.wait(3);
+        JSUtils.scrollIntoVIewJS(createaccount.zelleEnrolledInput);
         createaccount.zelleEnrolledInput.click();
         createaccount.saveButton.click();
     }
@@ -190,7 +196,7 @@ public class US_08_CreateaNewAccountStepDefs {
         System.out.println(accountList.get(randaccountID).getText());
         JSUtils.scrollIntoVIewJS(accountList.get(randaccountID));
         JSUtils.clickElementByJS(accountList.get(randaccountID));
-
+        JSUtils.scrollIntoVIewJS(createaccount.zelleEnrolledInfo);
         String actualZelleText=createaccount.zelleEnrolledInfo.getText();
         boolean actualZelleboolean = Boolean.parseBoolean( actualZelleText );
 
