@@ -15,8 +15,8 @@ public class DatabaseUtility {
 
 
     public static void createConnection() {
-        String url = ConfigReader.getProperty("database_url");
-        String user = ConfigReader.getProperty("database_user");
+        String url = "jdbc:postgresql://157.230.48.97:5432/gmibank_db";
+        String user = "techprodb_user";
         String password = "Techpro_@126";
         try {
             connection = DriverManager.getConnection(url, user, password);

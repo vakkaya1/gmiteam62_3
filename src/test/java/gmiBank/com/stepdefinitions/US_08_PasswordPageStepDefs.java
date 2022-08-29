@@ -1,7 +1,5 @@
 package gmiBank.com.stepdefinitions;
 
-
-
 import gmiBank.com.pages.US_08PasswordPage;
 import gmiBank.com.utilities.ConfigReader;
 import gmiBank.com.utilities.Driver;
@@ -30,7 +28,6 @@ public class US_08_PasswordPageStepDefs {
     passpage.signinbutton.click();
     passpage.usernameInput.sendKeys(ConfigReader.getProperty("usernameEmployee"));
     passpage.passwordInput.sendKeys(ConfigReader.getProperty("passwordEmployee"));
-    Driver.wait(1);
     passpage.signInSubmitButton.click();
 
     }
@@ -70,7 +67,6 @@ public class US_08_PasswordPageStepDefs {
 
     @And("user logged out")
     public void userLoggedOut() {
-
         passpage.accountButton.click();
         passpage.logoutButton.click();
     }

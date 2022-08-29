@@ -21,11 +21,20 @@ public class runner {
     //daha sonra daha guzel olasi icin hocanin plugin i ekle ve bukadar:))
              */
             //6. rapor almak icin
-            plugin={"html:target\\cucumber-raporlar1.html",
+            plugin={"pretty","html:target\\cucumber-raporlar1.html",
                     "json:target/json-reports/cucumber1.json",
-                    "junit:target/xml-report/cucumber1.xml"},
+                    "junit:target/xml-report/cucumber1.xml",
+                    "rerun:target/FailedReRun.txt"},
             //plugin={"html:target\\cucumber-reports.html"},
 
+
+
+
+
+
+            stepNotifications = true, // to see report gherkin step level
+            monochrome = false, // outputların daha okunabilir olması ıcın
+            publish = false,  // it is to get online report
             //1.
             //Bu notasyonun gorevi feature dosyalari ile stepdefinition dosylarini birlestirmektir
             //features="features folder path",
@@ -34,7 +43,7 @@ public class runner {
             features= "src/test/resources/features",
             //stepDefinitions package ismiu
             //3
-            glue="bank/com/stepDefinitions",
+            glue="src/test/java/gmiBank/com/stepdefinitions",
             //boylece packageleri birbirine bagladik
             //bu iki paket altinda kac tane class olursa olsun herhandi bir clasta yazilan her aadim
             //diger classlardaki adimlarla uyusurssa yeni adim olusturmaya gerek kalmaz
@@ -47,7 +56,7 @@ public class runner {
 
 
 
-            tags="@US_025",
+            tags="@token",
 
 
             //tags="@istediginiz tag", TEstNG de gordugumuz group gibi calisir
